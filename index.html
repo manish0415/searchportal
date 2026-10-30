@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif; 
             text-align: center; 
             background-color: #f4f4f9; 
-            padding-top: 50px; 
+            padding-top: 30px; 
         }
         .container {
             background: white;
@@ -17,11 +17,13 @@
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
             display: inline-block;
+            width: 80%;
+            max-width: 600px;
         }
         input { 
             padding: 10px; 
             font-size: 16px; 
-            width: 200px;
+            width: 220px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -35,11 +37,13 @@
             cursor: pointer;
         }
         button:hover { background-color: #0056b3; }
-        #result { 
-            margin-top: 20px; 
-            font-size: 18px; 
-            font-weight: bold; 
-            color: #28a745; 
+        iframe {
+            width: 100%;
+            height: 350px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none; /* सर्च से पहले छिपा रहेगा */
         }
     </style>
 </head>
@@ -47,37 +51,33 @@
 
     <div class="container">
         <h2>डेटा सर्च करें</h2>
-        <p>अपना पुराना नंबर डालें और नया डेटा प्राप्त करें:</p>
+        <p>अपना K-Number डालें:</p>
 
-        <input type="text" id="oldNumber" placeholder="पुराना नंबर यहाँ डालें">
+        <input type="text" id="oldNumber" placeholder="जैसे: 210413072145">
         <button onclick="searchData()">सर्च करें</button>
 
-        <div id="result"></div>
+        <!-- रिजल्ट इस विंडो (Iframe) में दिखेगा -->
+        <iframe id="resultFrame"></iframe>
     </div>
 
     <script>
         function searchData() {
             var num = document.getElementById("oldNumber").value;
-            var resultDiv = document.getElementById("result");
-
+            
             if(num === "") {
-                resultDiv.innerHTML = "<span style='color:red;'>कृपया कोई नंबर डालें!</span>";
+                alert("कृपया कोई नंबर डालें!");
                 return;
             }
 
-            resultDiv.innerHTML = "सर्च हो रहा है...";
+            // आका, यहाँ अपना वर्किंग Apps Script URL डालें
+            var scriptUrl = "https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec";
+            
+        
+            var finalUrl = scriptUrl + "kno" + num; 
 
-
-            var scriptUrl = "https://tinyurl.com/knofinderjvvnl";
-
-            fetch(scriptUrl + "?number=" + num)
-            .then(response => response.text())
-            .then(data => {
-                resultDiv.innerHTML = "नया डेटा: " + data;
-            })
-            .catch(error => {
-                resultDiv.innerHTML = "<span style='color:red;'>डेटा लाने में कोई समस्या हुई।</span>";
-            });
+            var iframe = document.getElementById("resultFrame");
+            iframe.src = finalUrl;
+            iframe.style.display = "block"; // सर्च करते ही विंडो दिखने लगेगी
         }
     </script>
 </body>
