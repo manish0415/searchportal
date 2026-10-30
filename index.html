@@ -1,70 +1,108 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K-Number Search Portal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JVVNL K NO Finder</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f6f9; display: flex; justify-content: center; padding-top: 60px; margin: 0; }
-    .card { background: #fff; padding: 25px 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
-    input { width: 100%; padding: 12px; margin: 12px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
-    button { width: 100%; padding: 12px; background: #0056b3; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
-    button:hover { background: #004494; }
-    #result { margin-top: 18px; font-size: 16px; font-weight: bold; color: #333; word-wrap: break-word; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 0%, #334155 0%, #0f172a 100%);
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    .card {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 92%; max-width: 420px;
+      background: rgba(241, 245, 249, 0.96);
+      padding: 30px 20px; border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex; background: #e0f2fe; color: #0284c7;
+      font-size: 10px; font-weight: 800; padding: 6px 14px;
+      border-radius: 30px; margin-bottom: 12px; letter-spacing: 1px;
+    }
+    h2 { color: #0f172a; font-size: 24px; margin-bottom: 4px; font-weight: 900; }
+    .sub-title { color: #64748b; font-size: 10.5px; margin-bottom: 24px; font-weight: 700; letter-spacing: 0.8px; }
+    .input-group { margin-bottom: 18px; text-align: left; }
+    .input-group label { display: block; font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 6px; text-transform: uppercase; }
+    input[type="text"] {
+      width: 100%; padding: 15px 16px; font-size: 16px; font-weight: 700;
+      border: 2px solid #cbd5e1; border-radius: 14px; outline: none;
+    }
+    button {
+      background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+      color: white; border: none; padding: 16px 18px; font-size: 15px;
+      font-weight: 800; border-radius: 14px; cursor: pointer; width: 100%;
+      text-transform: uppercase;
+    }
+    #result { margin-top: 20px; font-size: 14px; border-radius: 14px; }
+    .success { background: linear-gradient(135deg, #1e293b, #0f172a); color: #f8fafc; text-align: center; padding: 20px; border-radius: 14px; border: 2px solid #38bdf8; }
+    .result-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #38bdf8; margin-bottom: 6px; font-weight: 900; }
+    .result-value { font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: 1px; }
+    .error { background: #fef2f2; color: #ef4444; border: 2px solid #fecaca; padding: 15px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; }
+    .searching { background: #f0f9ff; color: #0284c7; border: 2px dashed #7dd3fc; padding: 15px; border-radius: 14px; text-align: center; font-weight: 800; font-size: 12px; }
+    .footer { margin-top: 24px; font-size: 10.5px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 16px; font-weight: 700; }
   </style>
 </head>
 <body>
+
   <div class="card">
-    <h2>डेटा सर्च करें</h2>
-    <p>अपना K-Number डालें:</p>
-    <input type="text" id="knoInput" placeholder="यहाँ K-Number लिखें...">
-    <button onclick="searchData()">सर्च करें</button>
+    <div class="badge">JVVNL SUB-DIVISION</div>
+    <h2>K NO FINDER</h2>
+    <div class="sub-title">JAIPUR VIDYUT VITRAN NIGAM LIMITED, JVVNL</div>
+    
+    <div class="input-group">
+      <label for="oldKNoInput">Enter Old K Number</label>
+      <input type="text" id="oldKNoInput" placeholder="e.g. 210416041809" autocomplete="off" onkeypress="if(event.key==='Enter') performSearch()">
+    </div>
+    
+    <button onclick="performSearch()">Search New K No</button>
     <div id="result"></div>
+    <div class="footer">Created by: Manish Gurjar (AAO-II, JVVNL)</div>
   </div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec";
+    // PASTE YOUR GOOGLE SHEET ID BELOW:
+    const SHEET_ID = "YOUR_GOOGLE_SHEET_ID";
 
-    async function searchData() {
-      const kno = document.getElementById("knoInput").value.trim();
-      const resultDiv = document.getElementById("result");
-
-      if (!kno) {
-        resultDiv.innerHTML = "<span style='color:red;'>कृपया K-Number दर्ज करें!</span>";
+    async function performSearch() {
+      const oldKNo = document.getElementById('oldKNoInput').value.trim().toLowerCase();
+      const resultDiv = document.getElementById('result');
+      
+      if (!oldKNo) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = "Please enter a valid Old K Number.";
         return;
       }
 
-      resultDiv.innerHTML = "सर्च हो रहा है... कृपया प्रतीक्षा करें।";
+      resultDiv.className = 'searching';
+      resultDiv.innerHTML = "⚡ CONNECTING TO JVVNL DATABASE...";
 
       try {
-        // Sends both common parameter names (?kno= and ?q= and ?search=) so it matches your script
-        const url = `${SCRIPT_URL}?kno=${encodeURIComponent(kno)}&q=${encodeURIComponent(kno)}&search=${encodeURIComponent(kno)}`;
-        const response = await fetch(url, { method: "GET", redirect: "follow" });
-        const text = await response.text();
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+        const response = await fetch(url);
+        const csvText = await response.text();
+        const rows = csvText.split(/\r?\n/);
 
-        // Check if Google returned an HTML page instead of data
-        if (text.trim().startsWith("<!DOCTYPE") || text.trim().startsWith("<html")) {
-          resultDiv.innerHTML = "<span style='color:red;'>त्रुटि: Google Script JSON डेटा के बजाय HTML पेज भेज रहा है (या Access 'Anyone' पर सेट नहीं है)।</span>";
-          return;
-        }
-
-        // Try parsing as JSON first, otherwise show raw text response
-        try {
-          const data = JSON.parse(text);
-          if (data.error) {
-            resultDiv.innerHTML = `<span style='color:red;'>${data.error}</span>`;
-          } else if (data.newKno || data.result || data.data) {
-            resultDiv.innerHTML = `परिणाम: ${data.newKno || data.result || JSON.stringify(data.data)}`;
-          } else {
-            resultDiv.innerHTML = `परिणाम: ${JSON.stringify(data)}`;
+        for (let i = 1; i < rows.length; i++) {
+          const cols = rows[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
+          if (cols[0] && cols[0].toLowerCase() === oldKNo) {
+            resultDiv.className = 'success';
+            resultDiv.innerHTML = `<div class="result-label">Your New K Number</div><div class="result-value">${cols[1]}</div>`;
+            return;
           }
-        } catch (e) {
-          // If your script returns plain text directly
-          resultDiv.innerHTML = text;
         }
+
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = "No New K Number found for Old K No: " + oldKNo.toUpperCase();
       } catch (err) {
-        resultDiv.innerHTML = "<span style='color:red;'>सर्वर से डेटा प्राप्त करने में असमर्थ (CORS/Network Error)।</span>";
-        console.error(err);
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = "System Error: Ensure Sheet is shared as 'Anyone with link can view'.";
       }
     }
   </script>
