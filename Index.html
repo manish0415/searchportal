@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JVVNL K NO Finder</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
@@ -8,34 +11,58 @@ html,body{width:100%;height:100%;background:radial-gradient(circle at 50% 0%,#33
 .badge{display:inline-block;background:#e0f2fe;color:#0284c7;font-size:10px;font-weight:800;padding:6px 14px;border-radius:30px;margin-bottom:10px;letter-spacing:1px}
 h2{color:#0f172a;font-size:24px;margin-bottom:4px;font-weight:900}
 .sub{color:#64748b;font-size:10.5px;margin-bottom:20px;font-weight:700;letter-spacing:.8px}
-.inp{margin-bottom:16px;text-align:left}.inp label{display:block;font-size:11px;font-weight:800;color:#475569;margin-bottom:6px}
+.inp{margin-bottom:16px;text-align:left}
+.inp label{display:block;font-size:11px;font-weight:800;color:#475569;margin-bottom:6px}
 input{width:100%;padding:14px;font-size:16px;font-weight:700;border:2px solid #cbd5e1;border-radius:14px;outline:none}
 .btn-s{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff;border:none;padding:15px;font-size:15px;font-weight:800;border-radius:14px;cursor:pointer;width:100%;text-transform:uppercase}
 #result{margin-top:18px;font-size:14px;border-radius:14px}
 .success{background:#0f172a;color:#fff;padding:18px;border-radius:14px;border:2px solid #38bdf8;text-align:center}
-.lbl{font-size:10px;color:#38bdf8;margin-bottom:4px;font-weight:900;text-transform:uppercase}.val{font-size:24px;font-weight:900;letter-spacing:1px;margin-bottom:14px}
+.lbl{font-size:10px;color:#38bdf8;margin-bottom:4px;font-weight:900;text-transform:uppercase}
+.val{font-size:24px;font-weight:900;letter-spacing:1px;margin-bottom:14px}
 .act{display:flex;gap:8px;flex-direction:column}
 .btn-c{background:#1e293b;color:#38bdf8;border:1px solid #38bdf8;padding:10px;font-size:12px;font-weight:800;border-radius:10px;cursor:pointer;text-transform:uppercase}
 .btn-p{display:block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-decoration:none;padding:13px;font-size:13.5px;font-weight:800;border-radius:10px;text-transform:uppercase}
 .error{background:#fef2f2;color:#ef4444;border:2px solid #fecaca;padding:15px;border-radius:14px;font-weight:700;font-size:13px;text-align:center}
 .wait{background:#f0f9ff;color:#0284c7;border:2px dashed #7dd3fc;padding:15px;border-radius:14px;font-weight:800;font-size:12px;text-align:center}
 .foot{margin-top:20px;font-size:10.5px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:14px;font-weight:700}
-</style></head><body>
+</style>
+</head>
+<body>
 <div class="card">
-  <div class="badge">JVVNL SUB-DIVISION</div><h2>K NO FINDER</h2><div class="sub">JAIPUR VIDYUT VITRAN NIGAM LIMITED, JVVNL</div>
-  <div class="inp"><label>ENTER OLD K NUMBER</label><input type="text" id="kno" placeholder="e.g. 210416041809" onkeypress="if(event.key==='Enter')findK()"></div>
-  <button class="btn-s" onclick="findK()">Search New K No</button><div id="result"></div>
+  <div class="badge">JVVNL SUB-DIVISION</div>
+  <h2>K NO FINDER</h2>
+  <div class="sub">JAIPUR VIDYUT VITRAN NIGAM LIMITED, JVVNL</div>
+  <div class="inp">
+    <label>ENTER OLD K NUMBER</label>
+    <input type="text" id="kno" placeholder="e.g. 210416041809" onkeypress="if(event.key==='Enter')findK()">
+  </div>
+  <button class="btn-s" onclick="findK()">Search New K No</button>
+  <div id="result"></div>
   <div class="foot">Created by: Manish Gurjar (AAO-II, JVVNL)</div>
 </div>
 <script>
 let qKno="",foundKno="";
-function copyK(b){navigator.clipboard.writeText(foundKno);if(b){b.innerHTML="COPIED: "+foundKno;setTimeout(()=>b.innerHTML="Copy New K-Number",2000);}}
+function copyK(b){
+  navigator.clipboard.writeText(foundKno);
+  if(b){b.innerHTML="COPIED: "+foundKno;setTimeout(()=>b.innerHTML="Copy New K-Number",2000);}
+}
 window.google={visualization:{Query:{setResponse:function(r){
-  const d=document.getElementById('result');if(!r||!r.table){d.className='error';d.innerHTML="Sheet Access Error.";return;}
-  for(const row of r.table.rows){if(row.c&&row.c[0]&&row.c[0].v!=null){if(String(row.c[0].f||row.c[0].v).trim().toLowerCase()===qKno){
-    foundKno=row.c[1]?String(row.c[1].f||row.c[1].v).trim():"N/A";d.className='success';
-    d.innerHTML='<div class="lbl">Your New K Number</div><div class="val">'+foundKno+'</div><div class="act"><button class="btn-c" onclick="copyK(this)">Copy New K-Number</button><a class="btn-p" href="https://www.bijlimitra.com/custumerQuickPay" target="_blank" onclick="copyK()">Pay Bill on Bijli Mitra</a></div>';return;
-  }}}
+  const d=document.getElementById('result');
+  if(!r||!r.table){d.className='error';d.innerHTML="Sheet Access Error.";return;}
+  for(const row of r.table.rows){
+    if(row.c&&row.c[0]&&row.c[0].v!=null){
+      if(String(row.c[0].f||row.c[0].v).trim().toLowerCase()===qKno){
+        foundKno=row.c[1]?String(row.c[1].f||row.c[1].v).trim():"N/A";
+        d.className='success';
+        d.innerHTML='<div class="lbl">Your New K Number</div><div class="val">'+foundKno+'</div>'+
+          '<div class="act">'+
+          '<button class="btn-c" onclick="copyK(this)">Copy New K-Number</button>'+
+          '<a class="btn-p" href="https://www.bijlimitra.com/custumerQuickPay" target="_blank" onclick="copyK()">Pay Bill on Bijli Mitra</a>'+
+          '</div>';
+        return;
+      }
+    }
+  }
   d.className='error';d.innerHTML="No New K Number found for Old K No: "+document.getElementById('kno').value.trim();
 }}}};
 function findK(){
@@ -43,8 +70,11 @@ function findK(){
   if(!v){d.className='error';d.innerHTML="Please enter a valid Old K Number.";return;}
   qKno=v.toLowerCase();d.className='wait';d.innerHTML="CONNECTING TO JVVNL DATABASE...";
   const old=document.getElementById('gs');if(old)old.remove();
-  const s=document.createElement('script');s.id='gs';s.src="https://docs.google.com/spreadsheets/d/1LyNnlUsZ4xiEeu_m-BJO-xVJh1jGugv12aDDJiO_xJw/gviz/tq?tqx=out:json&_="+Date.now();
-  s.onerror=function(){d.className='error';d.innerHTML="Ensure Google Sheet is shared as Anyone with link.";};document.body.appendChild(s);
+  const s=document.createElement('script');s.id='gs';
+  s.src="https://docs.google.com/spreadsheets/d/1LyNnlUsZ4xiEeu_m-BJO-xVJh1jGugv12aDDJiO_xJw/gviz/tq?tqx=out:json&_="+Date.now();
+  s.onerror=function(){d.className='error';d.innerHTML="Ensure Google Sheet is shared as 'Anyone with link'.";};
+  document.body.appendChild(s);
 }
 </script>
-</body></html>
+</body>
+</html>
