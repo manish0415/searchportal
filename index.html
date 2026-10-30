@@ -5,152 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>JVVNL K NO Finder</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: radial-gradient(circle at 50% 0%, #334155 0%, #0f172a 100%);
       font-family: 'Inter', 'Segoe UI', sans-serif;
       overflow: hidden;
     }
     .card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 92%;
-      max-width: 420px;
+      width: 92%; max-width: 420px;
       background: rgba(241, 245, 249, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 30px 20px;
-      border-radius: 24px;
+      padding: 30px 20px; border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.1);
       text-align: center;
-      animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes floatIn {
-      from { opacity: 0; top: 55%; }
-      to { opacity: 1; top: 50%; }
     }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      background: #e0f2fe;
-      color: #0284c7;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 30px;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
+      display: inline-flex; align-items: center;
+      background: #e0f2fe; color: #0284c7;
+      font-size: 10px; font-weight: 800;
+      padding: 6px 14px; border-radius: 30px;
+      margin-bottom: 12px; letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.15);
     }
-    h2 {
-      color: #0f172a;
-      font-size: 24px;
-      margin-bottom: 4px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-    }
-    .sub-title {
-      color: #64748b;
-      font-size: 10.5px;
-      margin-bottom: 24px;
-      font-weight: 700;
-      line-height: 1.4;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-    .input-group {
-      position: relative;
-      margin-bottom: 18px;
-      text-align: left;
-    }
-    .input-group label {
-      display: block;
-      font-size: 11px;
-      font-weight: 800;
-      color: #475569;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    h2 { color: #0f172a; font-size: 24px; margin-bottom: 4px; font-weight: 900; }
+    .sub-title { color: #64748b; font-size: 10.5px; margin-bottom: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+    .input-group { margin-bottom: 18px; text-align: left; }
+    .input-group label { display: block; font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
     input[type="text"] {
-      width: 100%;
-      padding: 15px 16px;
-      font-size: 16px;
-      font-weight: 700;
-      border: 2px solid #cbd5e1;
-      border-radius: 14px;
-      outline: none;
-      background: #ffffff;
-      color: #0f172a;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+      width: 100%; padding: 15px 16px; font-size: 16px; font-weight: 700;
+      border: 2px solid #cbd5e1; border-radius: 14px; outline: none;
+      background: #ffffff; color: #0f172a; letter-spacing: 1px;
     }
-    input[type="text"]:focus {
-      border-color: #0ea5e9;
-      box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
-    }
+    input[type="text"]:focus { border-color: #0ea5e9; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15); }
     button {
       background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
-      color: white;
-      border: none;
-      padding: 16px 18px;
-      font-size: 15px;
-      font-weight: 800;
-      border-radius: 14px;
-      cursor: pointer;
-      width: 100%;
+      color: white; border: none; padding: 16px 18px; font-size: 15px;
+      font-weight: 800; border-radius: 14px; cursor: pointer; width: 100%;
       box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
+      letter-spacing: 0.8px; text-transform: uppercase;
     }
-    button:hover {
-      background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
-      transform: translateY(-1px);
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 14px;
-      text-align: left;
-      border-radius: 14px;
-    }
+    #result { margin-top: 20px; font-size: 14px; text-align: left; border-radius: 14px; }
     .success {
       background: linear-gradient(135deg, #1e293b, #0f172a);
-      color: #f8fafc;
-      text-align: center;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
-      border: 2px solid #38bdf8;
+      color: #f8fafc; text-align: center; padding: 20px;
+      border-radius: 14px; border: 2px solid #38bdf8;
     }
-    .result-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #38bdf8;
-      margin-bottom: 6px;
-      font-weight: 900;
-    }
-    .result-value {
-      font-size: 24px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 1px;
-      word-break: break-all;
-    }
+    .result-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #38bdf8; margin-bottom: 6px; font-weight: 900; }
+    .result-value { font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: 1px; word-break: break-all; }
     .error {
-      background: #fef2f2;
-      color: #ef4444;
-      border: 2px solid #fecaca;
-      padding: 15px;
+      background: #fef2f2; color: #ef4444; border: 2px solid #fecaca;
+      padding: 15px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px;
+    }
+    .searching {
+      background: #f0f9ff; color: #0284c7; border: 2px dashed #7dd3fc;
+      padding: 15px; border-radius: 14px; text-align: center; font-weight: 800; font-size: 12px;
+    }
+    .footer {
+      margin-top: 24px; font-size: 10.5px; color: #94a3b8;
+      border-top: 1px solid #e2e8f0; padding-top: 16px; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="badge">JVVNL SUB-DIVISION</div>
+    <h2>K NO FINDER</h2>
+    <div class="sub-title">JAIPUR VIDYUT VITRAN NIGAM LIMITED, JVVNL</div>
+    
+    <div class="input-group">
+      <label for="oldKNoInput">Enter Old K Number</label>
+      <input type="text" id="oldKNoInput" placeholder="e.g. 210416041809" autocomplete="off" onkeypress="if(event.key==='Enter') performSearch()">
+    </div>
+    
+    <button onclick="performSearch()">Search New K No</button>
+    
+    <div id="result"></div>
+
+    <div class="footer">
+      Created by: Manish Gurjar (AAO-II, JVVNL)
+    </div>
+  </div>
+
+  <script>
+    const SHEET_ID = "1LyNnlUsZ4xiEeu_m-BJO-xVJh1jGugv12aDDJiO_xJw";
+    let currentSearchKNo = "";
+
+    // Google Visualization JSONP Callback (100% Immune to CORS Errors)
+    window.google = {
+      visualization: {
+        Query: {
+          setResponse: function(response) {
+            const resultDiv = document.getElementById('result');
+            if (!response || response.status === 'error' || !response.table) {
+              resultDiv.className = 'error';
+              resultDiv.innerHTML = "Sheet Error: Make sure Sheet is set to 'Anyone with link can view'.";
+              return;
+            }
+
+            const rows = response.table.rows;
+            for (let i = 0; i < rows.length; i++) {
+              const row = rows[i].c;
+              if (row && row[0] && row[0].v !== null && row[0].v !== undefined) {
+                const oldVal = String(row[0].f || row[0].v).trim().toLowerCase();
+                if (oldVal === currentSearchKNo) {
+                  const newVal = (row[1] && (row[1].f || row[1].v)) ? String(row[1].f || row[1].v).trim() : "N/A";
+                  resultDiv.className = 'success';
+                  resultDiv.innerHTML = '<div class="result-label">Your New K Number</div><div class="result-value">' + newVal + '</div>';
+                  return;
+                }
+              }
+            }
+
+            resultDiv.className = 'error';
+            resultDiv.innerHTML = "No New K Number found for Old K No: " + document.getElementById('oldKNoInput').value.trim();
+          }
+        }
+      }
+    };
+
+    function performSearch() {
+      const inputVal = document.getElementById('oldKNoInput').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!inputVal) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = "Please enter a valid Old K Number.";
+        return;
+      }
+
+      currentSearchKNo = inputVal.toLowerCase();
+      resultDiv.className = 'searching';
+      resultDiv.innerHTML = "⚡ CONNECTING TO JVVNL DATABASE...";
+
+      const oldScript = document.getElementById('gvizScript');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement('script');
+      script.id = 'gvizScript';
+      script.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&_=" + Date.now();
+      script.onerror = function() {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = "Access Error: Ensure Google Sheet is shared as 'Anyone with the link'.";
+      };
+      document.body.appendChild(script);
+    }
+  </script>
+
+</body>
+</html>
