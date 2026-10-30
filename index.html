@@ -1,54 +1,289 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JVVNL K NO Finder</title>
+<title>JVVNL K-Number Finder & Helpdesk Portal</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
-html,body{width:100%;height:100%;background:radial-gradient(circle at 50% 0%,#334155 0%,#0f172a 100%);overflow:hidden}
-.card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:420px;background:#f1f5f9;padding:28px 20px;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.4);text-align:center}
-.badge{display:inline-block;background:#e0f2fe;color:#0284c7;font-size:10px;font-weight:800;padding:6px 14px;border-radius:30px;margin-bottom:10px;letter-spacing:1px}
-h2{color:#0f172a;font-size:24px;margin-bottom:4px;font-weight:900}
-.sub{color:#64748b;font-size:10.5px;margin-bottom:20px;font-weight:700;letter-spacing:.8px}
-.inp{margin-bottom:16px;text-align:left}
-.inp label{display:block;font-size:11px;font-weight:800;color:#475569;margin-bottom:6px}
-input{width:100%;padding:14px;font-size:16px;font-weight:700;border:2px solid #cbd5e1;border-radius:14px;outline:none}
-.btn-s{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff;border:none;padding:15px;font-size:15px;font-weight:800;border-radius:14px;cursor:pointer;width:100%;text-transform:uppercase}
-#result{margin-top:18px;font-size:14px;border-radius:14px}
-.success{background:#0f172a;color:#fff;padding:18px;border-radius:14px;border:2px solid #38bdf8;text-align:center}
-.lbl{font-size:10px;color:#38bdf8;margin-bottom:4px;font-weight:900;text-transform:uppercase}
-.val{font-size:24px;font-weight:900;letter-spacing:1px;margin-bottom:14px}
-.act{display:flex;gap:8px;flex-direction:column}
-.btn-c{background:#1e293b;color:#38bdf8;border:1px solid #38bdf8;padding:10px;font-size:12px;font-weight:800;border-radius:10px;cursor:pointer;text-transform:uppercase}
-.btn-p{display:block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-decoration:none;padding:13px;font-size:13.5px;font-weight:800;border-radius:10px;text-transform:uppercase}
-.error{background:#fef2f2;color:#ef4444;border:2px solid #fecaca;padding:15px;border-radius:14px;font-weight:700;font-size:13px;text-align:center}
-.wait{background:#f0f9ff;color:#0284c7;border:2px dashed #7dd3fc;padding:15px;border-radius:14px;font-weight:800;font-size:12px;text-align:center}
-.foot{margin-top:20px;font-size:10.5px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:14px;font-weight:700}
+:root {
+  --primary-dark: #0f172a;
+  --primary-blue: #1e3a8a;
+  --accent-blue: #2563eb;
+  --govt-gold: #d97706;
+  --bg-color: #f8fafc;
+}
+* {box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #334155;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+.header-banner {
+  text-align: center;
+  color: #fff;
+  padding: 15px 10px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  margin-bottom: 10px;
+}
+.header-banner h1 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+.header-banner p {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 3px;
+  font-weight: 600;
+}
+.main-container {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.card-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  color: #fff;
+  padding: 22px 20px;
+  text-align: center;
+}
+.card-header .dept-badge {
+  background: rgba(255,255,255,0.15);
+  color: #fef08a;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 8px;
+  border: 1px solid rgba(254, 240, 138, 0.3);
+}
+.card-header h2 {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+.card-header .sub-location {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.card-body {
+  padding: 24px 20px;
+}
+.info-strip {
+  background: #f1f5f9;
+  border-left: 4px solid #2563eb;
+  padding: 10px 14px;
+  font-size: 11.5px;
+  color: #475569;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.inp-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+.inp-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  outline: none;
+  color: #0f172a;
+  background: #f8fafc;
+  transition: all 0.2s;
+}
+input[type="text"]:focus {
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+}
+.btn-search {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+  transition: transform 0.1s;
+}
+.btn-search:active { transform: scale(0.98); }
+
+#result {
+  margin-top: 18px;
+  font-size: 14px;
+}
+.success {
+  background: #0f172a;
+  color: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  border: 2px solid #38bdf8;
+  text-align: center;
+}
+.lbl {
+  font-size: 10px;
+  color: #38bdf8;
+  margin-bottom: 4px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.val {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.act {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.btn-copy {
+  background: #1e293b;
+  color: #38bdf8;
+  border: 1px solid #38bdf8;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.btn-pay {
+  display: block;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  text-decoration: none;
+  padding: 13px;
+  font-size: 13.5px;
+  font-weight: 800;
+  border-radius: 10px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+}
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 2px solid #fecaca;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 12.5px;
+  text-align: center;
+}
+.wait {
+  background: #f0f9ff;
+  color: #0284c7;
+  border: 2px dashed #7dd3fc;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 12px;
+  text-align: center;
+}
+.office-footer {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.6;
+}
+.office-footer strong {
+  color: #1e293b;
+}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="badge">JVVNL SUB-DIVISION</div>
-  <h2>K NO FINDER</h2>
-  <div class="sub">JAIPUR VIDYUT VITRAN NIGAM LIMITED, JVVNL</div>
-  <div class="inp">
-    <label>ENTER OLD K NUMBER</label>
-    <input type="text" id="kno" placeholder="e.g. 210416041809" onkeypress="if(event.key==='Enter')findK()">
+
+  <!-- Top Govt Banner -->
+  <div class="header-banner">
+    <h1>Jaipur Vidyut Vitran Nigam Limited (JVVNL)</h1>
+    <p>Government of Rajasthan Undertaking</p>
   </div>
-  <button class="btn-s" onclick="findK()">Search New K No</button>
-  <div id="result"></div>
-  <div class="foot">Created by: Manish Gurjar (AAO-II, JVVNL)</div>
-</div>
+
+  <!-- Main Portal Card -->
+  <div class="main-container">
+    <div class="card-header">
+      <div class="dept-badge">Official Sub-Division Portal</div>
+      <h2>New K-Number Finder</h2>
+      <div class="sub-location">Bhankrota & Narayan Vihar Sub-Division</div>
+    </div>
+    
+    <div class="card-body">
+      <div class="info-strip">
+        💡 <strong>Notice:</strong> Due to sub-division restructuring, consumer K-numbers have been updated. Enter your old K-number below to find your new K-number for billing & payments.
+      </div>
+
+      <div class="inp-group">
+        <label>Enter Old K-Number</label>
+        <input type="text" id="kno" placeholder="e.g. 210416041809" autocomplete="off" onkeypress="if(event.key==='Enter')findK()">
+      </div>
+      
+      <button class="btn-search" onclick="findK()">Search New K-Number</button>
+      
+      <div id="result"></div>
+    </div>
+
+    <!-- Official Office Address & Details Footer -->
+    <div class="office-footer">
+      <div><strong>Office:</strong> JVVNL Sub-Division Office, Bhankrota, Jaipur</div>
+      <div><strong>Jurisdiction:</strong> Bhankrota & Narayan Vihar</div>
+      <div style="margin-top:6px; color:#0284c7; font-weight:700;">Created by: Manish Gurjar (AAO-II, JVVNL)</div>
+    </div>
+  </div>
+
+  <!-- Bottom Copyright -->
+  <div style="text-align:center; font-size:10px; color:#64748b; margin-top:10px;">
+    &copy; 2026 JVVNL Administrative Portal. All Rights Reserved.
+  </div>
+
 <script>
-let qKno="",foundKno="";
+let qKno="", foundKno="";
 function copyK(b){
   navigator.clipboard.writeText(foundKno);
-  if(b){b.innerHTML="COPIED: "+foundKno;setTimeout(()=>b.innerHTML="Copy New K-Number",2000);}
+  if(b){b.innerHTML="✓ COPIED: "+foundKno;setTimeout(()=>b.innerHTML="Copy New K-Number",2000);}
 }
 window.google={visualization:{Query:{setResponse:function(r){
   const d=document.getElementById('result');
-  if(!r||!r.table){d.className='error';d.innerHTML="Sheet Access Error.";return;}
+  if(!r||!r.table){d.className='error';d.innerHTML="Database connection error. Please try again.";return;}
   for(const row of r.table.rows){
     if(row.c&&row.c[0]&&row.c[0].v!=null){
       if(String(row.c[0].f||row.c[0].v).trim().toLowerCase()===qKno){
@@ -56,23 +291,24 @@ window.google={visualization:{Query:{setResponse:function(r){
         d.className='success';
         d.innerHTML='<div class="lbl">Your New K Number</div><div class="val">'+foundKno+'</div>'+
           '<div class="act">'+
-          '<button class="btn-c" onclick="copyK(this)">Copy New K-Number</button>'+
-          '<a class="btn-p" href="https://www.bijlimitra.com/custumerQuickPay" target="_blank" onclick="copyK()">Pay Bill on Bijli Mitra</a>'+
+          '<button class="btn-copy" onclick="copyK(this)">📋 Copy New K-Number</button>'+
+          '<a class="btn-pay" href="https://www.bijlimitra.com/custumerQuickPay" target="_blank" onclick="copyK()">⚡ Pay Bill on Bijli Mitra</a>'+
           '</div>';
         return;
       }
     }
   }
-  d.className='error';d.innerHTML="No New K Number found for Old K No: "+document.getElementById('kno').value.trim();
+  d.className='error';d.innerHTML="No record found for Old K No: "+document.getElementById('kno').value.trim();
 }}}};
+
 function findK(){
-  const v=document.getElementById('kno').value.trim(),d=document.getElementById('result');
-  if(!v){d.className='error';d.innerHTML="Please enter a valid Old K Number.";return;}
-  qKno=v.toLowerCase();d.className='wait';d.innerHTML="CONNECTING TO JVVNL DATABASE...";
+  const v=document.getElementById('kno').value.trim(), d=document.getElementById('result');
+  if(!v){d.className='error';d.innerHTML="Please enter a valid Old K-Number.";return;}
+  qKno=v.toLowerCase();d.className='wait';d.innerHTML="⚡ CONNECTING TO JVVNL DATABASE...";
   const old=document.getElementById('gs');if(old)old.remove();
   const s=document.createElement('script');s.id='gs';
   s.src="https://docs.google.com/spreadsheets/d/1LyNnlUsZ4xiEeu_m-BJO-xVJh1jGugv12aDDJiO_xJw/gviz/tq?tqx=out:json&_="+Date.now();
-  s.onerror=function(){d.className='error';d.innerHTML="Ensure Google Sheet is shared as 'Anyone with link'.";};
+  s.onerror=function(){d.className='error';d.innerHTML="Server connection failed. Ensure sheet permissions are public.";};
   document.body.appendChild(s);
 }
 </script>
