@@ -78,10 +78,10 @@
             resultBox.innerHTML = "<span style='color:#007bff;'>सर्च हो रहा है, कृपया प्रतीक्षा करें...</span>";
 
             // 1. आका, यहाँ अपना वर्किंग Apps Script URL डालें
-            var scriptUrl = "https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec?number=210413072145";
+            var scriptUrl = "https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec";
             
             // 2. लिंक में ?number= की जगह अपनी स्क्रिप्ट वाला पैरामीटर (जैसे ?kno=) कर लें
-            var targetUrl = https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec?number=210413072145 + "KNO" + num; 
+            var targetUrl = https://script.google.com/macros/s/AKfycbyYh1XdVq1u8Sj-J16AjYoRPmbJjpYUK2_ruvIbepZ659_lYF12rfn_SE_mhxGZQpxFCg/exec + "KNO" + num; 
 
             // 3. गूगल की रुकावट हटाने के लिए प्रॉक्सी (Proxy) का इस्तेमाल
             var proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetUrl);
