@@ -5,68 +5,59 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JVVNL K-Number Portal - Bhankrota & Narayan Vihar</title>
 <style>
-:root {
-  --gov-blue: #0b3c5d;
-  --gov-dark: #1d2731;
-  --accent-blue: #0284c7;
-  --success-green: #059669;
-  --bg-body: #f1f5f9;
-}
 * {box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 body {
-  background-color: var(--bg-body);
+  /* वही पुराना soothing और शांत डार्क बैकग्राउंड */
+  background: radial-gradient(circle at 50% 0%, #334155 0%, #0f172a 100%);
   color: #334155;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 15px;
 }
+
 /* Top Government Bar */
 .top-gov-bar {
-  background-color: var(--gov-dark);
   color: #94a3b8;
   font-size: 11px;
   padding: 8px 16px;
   text-align: center;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid #334155;
 }
 .top-gov-bar span { color: #38bdf8; }
 
 /* Header Branding */
 .main-header {
-  background: linear-gradient(135deg, #0b3c5d 0%, #1e3a8a 100%);
-  color: white;
-  padding: 24px 16px;
   text-align: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  padding: 10px 16px 20px 16px;
 }
 .main-header h1 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  color: #f8fafc;
+  margin-bottom: 3px;
 }
 .main-header p {
   font-size: 12px;
-  color: #cbd5e1;
-  font-weight: 500;
+  color: #94a3b8;
+  font-weight: 600;
 }
 
 /* Container */
 .container {
   max-width: 480px;
-  width: 92%;
-  margin: -25px auto 20px auto;
+  width: 100%;
+  margin: 0 auto 20px auto;
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  position: relative;
-  z-index: 10;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-title-bar {
@@ -78,7 +69,7 @@ body {
   justify-content: space-between;
 }
 .card-title-bar h3 {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #0f172a;
   font-weight: 800;
   text-transform: uppercase;
@@ -86,7 +77,7 @@ body {
 }
 .badge-sub {
   background: #e0f2fe;
-  color: #0369a1;
+  color: #0284c7;
   font-size: 10px;
   font-weight: 800;
   padding: 4px 10px;
@@ -102,7 +93,7 @@ body {
   background: #eff6ff;
   border-left: 4px solid #3b82f6;
   padding: 12px 14px;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #1e40af;
   border-radius: 0 8px 8px 0;
   margin-bottom: 20px;
@@ -110,24 +101,21 @@ body {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   text-align: left;
 }
 .form-group label {
   display: block;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 800;
   color: #475569;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.input-wrapper {
-  position: relative;
-}
 input[type="text"] {
   width: 100%;
-  padding: 15px 16px;
+  padding: 14px 16px;
   font-size: 16px;
   font-weight: 700;
   border: 2px solid #cbd5e1;
@@ -138,13 +126,13 @@ input[type="text"] {
   transition: all 0.2s ease;
 }
 input[type="text"]:focus {
-  border-color: #2563eb;
+  border-color: #0ea5e9;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
   color: white;
   border: none;
   padding: 15px;
@@ -155,18 +143,18 @@ input[type="text"]:focus {
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   transition: transform 0.1s ease;
 }
 .btn-primary:active { transform: scale(0.98); }
 
 #result {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 .success-card {
   background: #0f172a;
   color: #fff;
-  padding: 20px;
+  padding: 18px;
   border-radius: 14px;
   border: 2px solid #38bdf8;
   text-align: center;
@@ -183,13 +171,13 @@ input[type="text"]:focus {
   font-size: 24px;
   font-weight: 900;
   letter-spacing: 1px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   color: #ffffff;
 }
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .btn-copy-action {
   background: #1e293b;
@@ -201,20 +189,18 @@ input[type="text"]:focus {
   border-radius: 10px;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 .btn-pay-action {
   display: block;
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #fff;
   text-decoration: none;
-  padding: 14px;
+  padding: 13px;
   font-size: 13.5px;
   font-weight: 800;
   border-radius: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .alert-box {
@@ -224,38 +210,36 @@ input[type="text"]:focus {
   padding: 14px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12.5px;
   text-align: center;
 }
 .loading-box {
   background: #f0f9ff;
   color: #0284c7;
-  border: 1px dashed #7dd3fc;
+  border: 2px dashed #7dd3fc;
   padding: 14px;
   border-radius: 12px;
   font-weight: 800;
   font-size: 12px;
   text-align: center;
-  letter-spacing: 0.5px;
 }
 
 /* Footer Section */
 .footer-section {
-  background: #ffffff;
+  background: #f8fafc;
   border-top: 1px solid #e2e8f0;
-  padding: 16px 20px;
+  padding: 15px 20px;
   text-align: center;
-  font-size: 11.5px;
+  font-size: 11px;
   color: #64748b;
   line-height: 1.6;
 }
 .footer-section strong { color: #0f172a; }
 .developer-credit {
-  margin-top: 6px;
+  margin-top: 5px;
   color: #0284c7;
   font-weight: 800;
   font-size: 11px;
-  letter-spacing: 0.3px;
 }
 </style>
 </head>
@@ -281,14 +265,12 @@ input[type="text"]:focus {
 
     <div class="card-content">
       <div class="notice-box">
-        ℹ️ <strong>Notice:</strong> Due to sub-division restructuring, consumer accounts have been assigned new K-numbers. Enter your legacy old K-number below to retrieve your updated consumer details.
+        ℹ️ <strong>Notice:</strong> Enter your legacy old K-number below to retrieve your updated consumer K-number for billing & payments.
       </div>
 
       <div class="form-group">
         <label for="kno">Enter Old K-Number</label>
-        <div class="input-wrapper">
-          <input type="text" id="kno" placeholder="e.g. 210416041809" autocomplete="off" onkeypress="if(event.key==='Enter')findK()">
-        </div>
+        <input type="text" id="kno" placeholder="e.g. 210416041809" autocomplete="off" onkeypress="if(event.key==='Enter')findK()">
       </div>
 
       <button class="btn-primary" onclick="findK()">Search New K-Number</button>
@@ -299,20 +281,20 @@ input[type="text"]:focus {
     <!-- Official Office Footer -->
     <div class="footer-section">
       <div><strong>Office Location:</strong> JVVNL Sub-Division Office, Bhankrota, Jaipur</div>
-      <div class="developer-credit">Created & Managed by: Manish Gurjar (AAO-II, JVVNL)</div>
+      <div class="developer-credit">Created by: Manish Gurjar (AAO-II, JVVNL)</div>
     </div>
   </div>
 
   <!-- Page Bottom Copyright -->
-  <div style="text-align:center; font-size:10.5px; color:#94a3b8; padding-bottom:15px;">
-    &copy; 2026 JVVNL Billing & Consumer Services. All Rights Reserved.
+  <div style="text-align:center; font-size:10px; color:#94a3b8; padding-bottom:10px;">
+    &copy; 2026 JVVNL Administrative Portal. All Rights Reserved.
   </div>
 
 <script>
 let qKno="", foundKno="";
 function copyK(b){
   navigator.clipboard.writeText(foundKno);
-  if(b){b.innerHTML="✓ COPIED SUCCESSFULLY";setTimeout(()=>b.innerHTML="📋 Copy New K-Number",2000);}
+  if(b){b.innerHTML="✓ COPIED: "+foundKno;setTimeout(()=>b.innerHTML="📋 Copy New K-Number",2000);}
 }
 window.google={visualization:{Query:{setResponse:function(r){
   const d=document.getElementById('result');
@@ -322,7 +304,7 @@ window.google={visualization:{Query:{setResponse:function(r){
       if(String(row.c[0].f||row.c[0].v).trim().toLowerCase()===qKno){
         foundKno=row.c[1]?String(row.c[1].f||row.c[1].v).trim():"N/A";
         d.innerHTML='<div class="success-card">'+
-          '<div class="res-label">Your New K-Number</div>'+
+          '<div class="res-label">Your New K Number</div>'+
           '<div class="res-val">'+foundKno+'</div>'+
           '<div class="action-buttons">'+
           '<button class="btn-copy-action" onclick="copyK(this)">📋 Copy New K-Number</button>'+
@@ -339,7 +321,7 @@ function findK(){
   const v=document.getElementById('kno').value.trim(), d=document.getElementById('result');
   if(!v){d.innerHTML='<div class="alert-box">Please enter a valid Old K-Number.</div>';return;}
   qKno=v.toLowerCase();
-  d.innerHTML='<div class="loading-box">⚡ QUERYING JVVNL DATABASE...</div>';
+  d.innerHTML='<div class="loading-box">⚡ CONNECTING TO JVVNL DATABASE...</div>';
   const old=document.getElementById('gs');if(old)old.remove();
   const s=document.createElement('script');s.id='gs';
   s.src="https://docs.google.com/spreadsheets/d/1LyNnlUsZ4xiEeu_m-BJO-xVJh1jGugv12aDDJiO_xJw/gviz/tq?tqx=out:json&_="+Date.now();
